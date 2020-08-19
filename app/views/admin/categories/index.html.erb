@@ -1,0 +1,38 @@
+<section class="admin-categories-show">
+  <header class="page-header">
+    <h1>
+      Admin &raquo; All Categories
+    </h1>
+  </header>
+
+  <div class="well">
+    <%= link_to '+ Create New Category', [:new, :admin, :category], class: 'btn btn-info' %>
+  </div>
+
+  <div class="panel panel-default products">
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Items</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%# <% puts "Categories: #{@categories.inspect}"%> 
+        <% @categories.each do |category| %>
+          <tr>
+            <td>
+              <%= category.name%>
+            </td>
+            <td>
+              <%= category.products.count%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+
+</section>
