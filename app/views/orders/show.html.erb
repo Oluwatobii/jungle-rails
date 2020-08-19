@@ -1,7 +1,6 @@
 <section class="orders-show">
 
   <header class="page-header">
-  <% puts "Order: #{@order.inspect}"%>
     <h1>Order #<%= @order.id %></h1>
   </header>
 
@@ -20,26 +19,7 @@
       </thead>
       <tbody>
         <% @order.line_items.each do |item| %>
-          <% puts "Item inspect: #{item.inspect}"%>
-          <tr>
-            <td>
-              <%= image_tag Product.find_by(id: item.product_id).image.tiny %>
-            </td>
-            <td>
-              <h4><%= Product.find_by(id: item.product_id).name %></h4>
-              <br>
-              <p><%= Product.find_by(id: item.product_id).description %></p>
-            </td>
-            <td>
-              <%= humanized_money_with_symbol Product.find_by(id: item.product_id).price %>
-            </td>
-              <td>
-              <%= item[:quantity].to_i %>
-            </td>
-            <td>
-              <%= humanized_money_with_symbol Product.find_by(id: item.product_id).price * item[:quantity].to_i %>
-            </td>
-          </tr>
+          <%= render 'item', product: Product.find_by(id: item.product_id), quantity: item[:quantity].to_i %>
         <% end %>
       </tbody>
       <tfoot>
