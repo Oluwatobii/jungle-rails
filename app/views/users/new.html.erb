@@ -1,0 +1,35 @@
+<header class="page-header">
+  <h1>SignUp!</h1>
+</header>
+
+
+<div class='container-fluid'>
+    <%= form_for :user, url: '/users' do |f|%>
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <%= f.label :first_name, 'First Name', class: 'form-control sr-only'%>
+        <%= f.text_field :first_name, autofocus: true, class: 'form-control', placeholder: 'First Name'%>
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <%= f.label :last_name, 'Last Name', class: 'form-control sr-only'%>
+        <%= f.text_field :last_name, autofocus: true, class: 'form-control', placeholder: 'Last Name'%>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <%= f.label :email, 'Email Address', class: 'form-control sr-only'%>
+        <%= f.text_field :email, autofocus: true, class: 'form-control', placeholder: 'Email Address'%>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <%= f.label :password, 'Password', class: 'form-control sr-only'%>
+        <%= f.password_field :password, autofocus: true, class: 'form-control', placeholder: 'Password'%>
+      </div>
+      <div class="form-group">
+        <label for="password_confirmation">Password Confirmation</label>
+        <%= f.label :password_confirmation, 'Password Confirmation', class: 'form-control sr-only'%>
+        <%= f.password_field :password_confirmation, autofocus: true, class: 'form-control', placeholder: 'Password Confirmation'%>
+      </div>
+      <%= f.submit "Submit", class: 'btn btn-primary' %>
+    <% end %>
+</div>
