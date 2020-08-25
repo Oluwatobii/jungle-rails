@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
   before (:each) do
     @user = User.new({
       first_name: 'Lisa',
@@ -39,9 +38,8 @@ RSpec.describe User, type: :model do
 
       @user.save
 
+      expect(@user).to_not be_valid
 
-      @found_user = User.where(first_name: 'Bart')
-      expect(@found_user).not_to exist
 
     end
 
@@ -81,17 +79,17 @@ RSpec.describe User, type: :model do
     it "Able to log in with correct email and password"  do
       check_user = User.authenticate_with_credentials('lisasimpson@gmail.com', 'password')
       # p "check_user #{check_user.inspect}"
-      expect(check_user.validate).to_not be_nil
+      expect(check_user).to eq(@user)
     end
     it "Accounting for whitespaces from emails"  do
       check_user = User.authenticate_with_credentials('   lisasimpson@gmail.com   ', 'password')
       # p "check_user #{check_user.inspect}"
-      expect(check_user).to_not be_nil
+      expect(check_user).to eq(@user)
     end
     it "Able to account for wrong case for their email address"  do
       check_user = User.authenticate_with_credentials('lIsaSimPsoN@gmAil.CoM', 'password')
       # p "check_user #{check_user.inspect}"
-      expect(check_user).to_not be_nil
+      expect(check_user).to eq(@user)
     end
     it "Not able to log in with wrong password"  do
       check_user = User.authenticate_with_credentials('lisasimpson@gmail.com', 'wrongpassword')

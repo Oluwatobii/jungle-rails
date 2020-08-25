@@ -21,11 +21,13 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
     visit root_path
 
     # DEBUG 
-    # save_screenshot
-    save_screenshot('product_page.png')
+    save_screenshot('BEFORE: product_page.png')
     
     # VERIFY
     page.find('article', match: :first).click_on('Details')
     expect(page).to have_css 'section.products-show'
+
+    # DEBUG 
+    save_screenshot('AFTER: product_page.png')
   end
 end
