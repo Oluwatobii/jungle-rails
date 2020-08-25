@@ -4,20 +4,21 @@ RSpec.describe Product, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
   describe 'Validations' do
     # validation tests/examples here
-    @category = Category.find_or_create_by name: 'Toy'
-    
-    @product = Product.new({
-      name: 'LEGO Simpsons House',
-      price_cents: '349.90',
-      quantity: 1
-    })
-
-    @category.products.create({
-      name: 'LEGO Simpsons House',
-      price_cents: '349.90',
-      quantity: 1
-    })
-    # @category.products.create(@product)
+    before (:each) do
+      @category = Category.find_or_create_by name: 'Toy'
+      
+      # @product = Product.new({
+      #   name: 'LEGO Simpsons House',
+      #   price_cents: '349.90',
+      #   quantity: 1
+      # })
+  
+      @category.products.create({
+        name: 'LEGO Simpsons House',
+        price_cents: '349.90',
+        quantity: 1
+      })
+    end
       
     it 'Saves a new category and product when created' do
       expect(Category.where(name: 'Toy')).to exist
